@@ -23,7 +23,7 @@ pipeline {
       steps {
         withCredentials(bindings: [usernamePassword(credentialsId: 'snowflake_creds',passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
           sh '''
-              sqitch deploy "db:snowflake://$USERNAME:$PASSWORD@hashmap.snowflakecomputing.com/flipr?Driver=Snowflake;warehouse=sqitch_wh"
+              sqitch deploy "db:snowflake://$USERNAME:$PASSWORD@uba44969.snowflakecomputing.com/flipr?Driver=Snowflake;warehouse=sqitch_wh"
               '''           
         }
       }
@@ -32,7 +32,7 @@ pipeline {
       steps {
         withCredentials(bindings: [usernamePassword(credentialsId: 'snowflake_creds', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
           sh '''
-              sqitch verify "db:snowflake://$USERNAME:$PASSWORD@hashmap.snowflakecomputing.com/flipr?Driver=Snowflake;warehouse=sqitch_wh"
+              sqitch verify "db:snowflake://$USERNAME:$PASSWORD@uba44969.snowflakecomputing.com/flipr?Driver=Snowflake;warehouse=sqitch_wh"
               ''' 
         }
       }

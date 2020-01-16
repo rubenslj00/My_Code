@@ -1,7 +1,3 @@
-pipeline {
-    options {
-    timeout(time: 1, unit: 'HOURS')
-}
 agent {
     docker {
     image 'hashmapinc/sqitch:snowflake-dev'
@@ -38,4 +34,4 @@ post {
     sh 'chmod -R 777 .'
     }
 }
-}
+

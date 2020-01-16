@@ -12,13 +12,13 @@ stages {
     
     stage('Installing Latest snowsql') {
         steps {
-            echo 'this stage 1'
-            sh 'snowsql --help'
+            echo 'this is stage 1'
+            ##sh 'snowsql --help'
         }
     }
     stage('Deploy changes') {
     steps {
-        echo 'this stage 2'
+        echo 'this is stage 2'
         withCredentials(bindings: [usernamePassword(credentialsId: 'snowflake_creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
         sh '''
             sqitch deploy "db:snowflake://$USERNAME:$PASSWORD@uba44969.snowflakecomputing.com/flipr?Driver=Snowflake;warehouse=sqitch_wh"
@@ -28,6 +28,7 @@ stages {
     }
     stage('Verify changes') {
     steps {
+        echo 'this is stage 3'
         withCredentials(bindings: [usernamePassword(credentialsId: 'snowflake_creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
         sh '''
             sqitch verify "db:snowflake://$USERNAME:$PASSWORD@uba44969.snowflakecomputing.com/flipr?Driver=Snowflake;warehouse=sqitch_wh"

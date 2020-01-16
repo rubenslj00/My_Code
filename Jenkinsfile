@@ -17,6 +17,7 @@ pipeline {
             mv /var/.snowsql ./
             ''' 
         }
+      }
     }
     stage('Deploy changes') {
       steps {
@@ -35,9 +36,12 @@ pipeline {
               ''' 
         }
       }
+    }
+
     post {
     always {
       sh 'chmod -R 777 .'
     }
   }
+}
   

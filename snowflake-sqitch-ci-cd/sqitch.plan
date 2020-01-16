@@ -1,0 +1,14 @@
+%syntax-version=1.0.0
+%project=flipr
+%uri=https://github.com/hashmapinc/snowflake-sqitch-ci-cd
+
+appschema 2018-07-27T14:27:24Z Prem Dubey <prem.dubey@hashmapinc.com> # Add schema for all flipr objects.
+users [appschema] 2018-07-27T15:03:56Z Prem Dubey <prem.dubey@hashmapinc.com> # Creates table to track our users.
+flips [appschema users] 2018-07-27T15:23:41Z Prem Dubey <prem.dubey@hashmapinc.com> # Adds table for storing flips.
+userflips [appschema users flips] 2018-07-27T15:23:50Z Prem Dubey <prem.dubey@hashmapinc.com> # Creates the userflips view.
+@v1.0.0-dev1 2018-07-27T15:40:25Z Prem Dubey <prem.dubey@hashmapinc.com> # Tag v1.0.0-dev1.
+
+lists [appschema flips] 2018-07-27T16:00:00Z Prem Dubey <prem.dubey@hashmapinc.com> # Adds table for storing lists.
+hashtags [flips] 2018-07-27T15:51:16Z Prem Dubey <prem.dubey@hashmapinc.com> # Adds table for storing hashtags.
+@v1.0.0-dev2 2018-07-27T18:00:56Z Prem Dubey <prem.dubey@hashmapinc.com> # Tag v1.0.0-dev2.
+userflips [userflips@v1.0.0-dev2] 2018-07-27T18:11:04Z Prem Dubey <prem.dubey@hashmapinc.com> # Adds userflips.twitter.

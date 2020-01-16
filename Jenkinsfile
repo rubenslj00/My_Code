@@ -36,12 +36,13 @@ pipeline {
               ''' 
         
       }
-    }
+    
 }
-    post {
+post {
     always {
       sh 'chmod -R 777 .'
     }
   }
+ }
 }
   

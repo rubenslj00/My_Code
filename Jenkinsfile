@@ -6,7 +6,7 @@ pipeline {
         stage("build and test the project") {
              agent {
                docker {
-                  image 'hashmapinc/sqitch:jenkns'
+                  image 'hashmapinc/sqitch:jenkins'
                   args "-u root -v /var/run/docker.sock:/var/run/docker.sock --entrypoint=''"
                        }
                     }
@@ -31,19 +31,18 @@ pipeline {
                                    }
             }
             stage('Verify changes') {
-      steps {
-        withCredentials(bindings: [usernamePassword(credentialsId: 'snowflake_creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')])
-          sh '''
-              sqitch verify "db:snowflake://$USERNAME:$PASSWORD@hashmap.snowflakecomputing.com/flipr?Driver=Snowflake;warehouse=sqitch_wh"
-              ''' 
+                steps {
+                    withCredentials(bindings: [usernamePassword(credentialsId: 'snowflake_creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')])
+                    sh '''
+                    sqitch verify "db:snowflake://$USERNAME:$PASSWORD@hashmap.snowflakecomputing.com/flipr?Driver=Snowflake;warehouse=sqitch_wh"
+                    ''' 
         
-      }
+            }
     }
             }
             post {
                 success {
-                    echo 'succeeded '
-                    stash name: "artifacts", includes: "artifacts/**/*"
+                    echo 'build succeeded '
                 }
             }
         }

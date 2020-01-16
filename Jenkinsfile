@@ -6,7 +6,7 @@ pipeline {
         stage("build and test the project") {
              agent {
                docker {
-                  image 'hashmapinc/sqitch:jenkins'
+                  image 'hashmapinc/sqitch:jenkns'
                   args "-u root -v /var/run/docker.sock:/var/run/docker.sock --entrypoint=''"
                        }
                     }
@@ -42,6 +42,7 @@ pipeline {
             }
             post {
                 success {
+                    echo 'succeeded '
                     stash name: "artifacts", includes: "artifacts/**/*"
                 }
             }

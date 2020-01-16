@@ -4,7 +4,7 @@ pipeline {
   }
   agent {
     docker {
-      image 'sqitch/sqitch:jenkins'
+      image 'sqitch/sqitch'
       args "-u root -v /var/run/docker.sock:/var/run/docker.sock --entrypoint=''"
     }
   }

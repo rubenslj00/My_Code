@@ -1,4 +1,4 @@
-pipeline {
+node {
     options {
     timeout(time: 1, unit: 'HOURS')
 }

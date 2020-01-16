@@ -9,6 +9,7 @@ pipeline {
     }
 }
 stages {
+    echo 'this stage 1'
     stage('Installing Latest snowsql') {
         steps {
             sh 'snowsql --help'

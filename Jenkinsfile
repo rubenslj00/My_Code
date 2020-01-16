@@ -1,4 +1,4 @@
-node { pipeline {
+pipeline {
     options {
     timeout(time: 1, unit: 'HOURS')
 }
@@ -38,4 +38,4 @@ post {
     sh 'chmod -R 777 .'
     }
 }
-}}
+}

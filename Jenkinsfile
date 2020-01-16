@@ -5,7 +5,7 @@ pipeline {
 agent {
     docker {
     image 'hashmapinc/sqitch:snowflake-dev'
-    args "-u root -v /var/run/docker.sock:/var/run/docker.sock --entrypoint=''"
+    args "-u root -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker -p 8088:8088 jenkins-docker --entrypoint=''"
     }
 }
 stages {

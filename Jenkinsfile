@@ -5,7 +5,6 @@ pipeline {
   agent {
     docker {
       image 'hashmapinc/sqitch:jenkins'
-      -p 9000:9000
       args "-u root -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer --entrypoint=''"
     }
   }

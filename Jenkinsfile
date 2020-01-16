@@ -13,7 +13,7 @@ stages {
     stage('Installing Latest snowsql') {
         steps {
             echo 'this is stage 1'
-            ##sh 'snowsql --help'
+            /* sh 'snowsql --help' */
         }
     }
     stage('Deploy changes') {

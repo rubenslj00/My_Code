@@ -6,10 +6,5 @@
 appschema 2020-01-18T14:27:24Z Marge N. O’Vera <marge@example.com> # Add schema for all chakkas objects.
 update 2020-01-18T11:19:14Z Sarath <cvsarathchandra@gmail.com> # update & create table added on mytable
 add 2020-01-18T11:34:43Z Sarath <cvsarathchandra@gmail.com> # update & create table added on mytable for date column
-<<<<<<< HEAD
 insert 2020-01-18T20:03:01Z Sarath <cvsarathchandra@gmail.com> # insert a row in mytable
-=======
 # appschema [flips] 2020-01-18T11:27:24Z Marge N. O’Vera <marge@example.com> # Add schema for all chakkas objects.
-insert 2020-01-18T20:03:01Z Sarath <cvsarathchandra@gmail.com> # insert a row in mytable
-
->>>>>>> 74f69da0f484042e2794f994b38a097293936e63

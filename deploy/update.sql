@@ -5,11 +5,11 @@ CREATE TABLE flipr.mytable (
     description TEXT         NOT NULL,
     created_at  TIMESTAMP_TZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     to_date     TIMESTAMP_TZ NOT NULL DEFAULT NONE,
-    to_timestamp  TIMESTAMP_TZ NOT NULL DEFAULT CURRENT_TIMESTAMP+5 
+    to_timestamp  TIMESTAMP_TZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 
-insert into mytable
+insert into flipr.mytable
   select 'PETER', 'JEFF', '123-456',  to_date('2020-01-16T23:39:20.123'),to_date('2019-12-31T23:39:20.123'), to_timestamp('2018-12-08T23:39:20.123');
   
   

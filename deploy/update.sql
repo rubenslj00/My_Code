@@ -4,7 +4,7 @@ CREATE TABLE flipr.sqitch.mytable (
     name        TEXT         NOT NULL,
     description TEXT         NOT NULL,
     created_at  TIMESTAMP_TZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    to_date     TIMESTAMP_TZ NOT NULL DEFAULT NONE,
+    to_date     TIMESTAMP_TZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     to_timestamp  TIMESTAMP_TZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 

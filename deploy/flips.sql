@@ -3,7 +3,7 @@
 -- requires: users
 
 USE WAREHOUSE &warehouse;
-CREATE TABLE SARATH.SQITCH (
+CREATE TABLE flipr.SQITCH (
     id        INTEGER        PRIMARY KEY,
     nickname  TEXT           NOT NULL REFERENCES flipr.users(nickname),
     body      VARCHAR(180)   NOT NULL DEFAULT '',

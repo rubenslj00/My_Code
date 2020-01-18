@@ -5,5 +5,6 @@
 #update 2020-01-18T15:27:24Z Marge N. O’Vera <marge@example.com> # update mytable objects.
 appschema 2020-01-18T14:27:24Z Marge N. O’Vera <marge@example.com> # Add schema for all chakkas objects.
 update 2020-01-18T11:19:14Z Sarath <cvsarathchandra@gmail.com> # update & create table added on mytable
+add 2020-01-18T11:34:43Z Sarath <cvsarathchandra@gmail.com> # update & create table added on mytable for date column
 #appschema [flips] 2020-01-18T11:27:24Z Marge N. O’Vera <marge@example.com> # Add schema for all chakkas objects.
 

@@ -22,7 +22,7 @@ pipeline {
       steps {
         withCredentials(bindings: [usernamePassword(credentialsId: 'snowflake_creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
           sh '''
-              sqitch deploy "db:snowflake://$USERNAME:$PASSWORD@@moffitt.us-east-1.privatelink.snowflakecomputing.com/mcap_dev?Driver=SnowflakeDSIIDriver;warehouse=ETL_DEV"
+              sqitch deploy "db:snowflake://$USERNAME:$PASSWORD@@moffitt.us-east-1.privatelink.snowflakecomputing.com/mcap_dev?Driver=Snowflake;warehouse=ETL_DEV"
               '''           
         }
       }
@@ -31,7 +31,7 @@ pipeline {
       steps {
         withCredentials(bindings: [usernamePassword(credentialsId: 'snowflake_creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
           sh '''
-              sqitch verify "db:snowflake://$USERNAME:$PASSWORD@@moffitt.us-east-1.privatelink.snowflakecomputing.com/mcap_dev?Driver=SnowflakeDSIIDriver;warehouse=ETL_DEV"
+              sqitch verify "db:snowflake://$USERNAME:$PASSWORD@@moffitt.us-east-1.privatelink.snowflakecomputing.com/mcap_dev?Driver=Snowflake;warehouse=ETL_DEV"
               ''' 
         }
       }

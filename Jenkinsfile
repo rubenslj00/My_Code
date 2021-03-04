@@ -1,50 +1,45 @@
 pipeline {
     options {
-    timeout(time: 1, unit: 'HOURS')
-}
- agent {
+      timeout(time: 1, unit: 'HOURS') 
+  }
+  agent {
     docker {
-    image 'hashmapinc/sqitch:snowflake-dev'
-    args "-u root -v /var/run/docker.sock:/var/run/docker.sock --entrypoint=''"
+      image 'hashmapinc/sqitch:jenkins'
+      args "-u root -v /var/run/docker.sock:/var/run/docker.sock --entrypoint=''"
     }
-}
-stages {
-    
-    stage('Installing Latest snowsql') {
+  }
+  stages {
+    stage('Moving .snowsql to workspace and replacing snowsql in /bin') {
         steps {
-            echo 'this is stage 1'
-            sh 'snowsql --help'
+            sh '''
+            rm /bin/snowsql 
+            mv /var/snowsql /bin/
+            mv /var/.snowsql ./
+            ''' 
         }
-    }
-    stage('Tracking Status') {
-    steps {
-        echo 'this is stage 2'
-        withCredentials(bindings: [usernamePassword(credentialsId: 'snowflake_creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-        sh '''
-            sqitch status "db:snowflake://$USERNAME:$PASSWORD@jja46528.snowflakecomputing.com/flipr?Driver=Snowflake;warehouse=sqitch_wh"
-            '''
-        }
-    }
     }
     stage('Deploy changes') {
-    steps {
-        echo 'this is stage 3'
+      steps {
         withCredentials(bindings: [usernamePassword(credentialsId: 'snowflake_creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-        sh '''
-            sqitch deploy "db:snowflake://$USERNAME:$PASSWORD@jja46528.snowflakecomputing.com/flipr?Driver=Snowflake;warehouse=sqitch_wh"
-            '''
+          sh '''
+              sqitch deploy "db:snowflake://$USERNAME:$PASSWORD@@moffitt.us-east-1.privatelink.snowflakecomputing.com/mcap_dev?Driver=SnowflakeDSIIDriver;warehouse=ETL_DEV"
+              '''           
         }
+      }
     }
-    }
-    stage('Verify changes') {
-    steps {
-        echo 'this is stage 4'
+      stage('Verify changes') {
+      steps {
         withCredentials(bindings: [usernamePassword(credentialsId: 'snowflake_creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-        sh '''
-            sqitch verify "db:snowflake://$USERNAME:$PASSWORD@jja46528.snowflakecomputing.com/flipr?Driver=Snowflake;warehouse=sqitch_wh"
-            '''
+          sh '''
+              sqitch verify "db:snowflake://$USERNAME:$PASSWORD@@moffitt.us-east-1.privatelink.snowflakecomputing.com/mcap_dev?Driver=SnowflakeDSIIDriver;warehouse=ETL_DEV"
+              ''' 
         }
+      }
     }
+  }
+  post {
+    always {
+      sh 'chmod -R 777 .'
     }
-}
+  }
 }
